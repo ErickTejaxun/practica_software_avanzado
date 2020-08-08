@@ -18,14 +18,38 @@ var contador = 10;
 
 exports.cargarUsuarios = function(next)
 {
-    var path = '/index.php';
+
+    /*Ahora vamos a implementar la capa de seguridad.*/
+    /*Primero tenemos que solicitar al servidor de autenticación que nos otorgue un token */    
+    
+    var options =
+    {
+        //uri: 'https://'+ host+'/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal',
+        uri: 'https://'+ host+'/index.php?option=token&api=oauth2&grant_type=client_credentials&client_id=sa&client_secret=fb5089840031449f1a4bf2c91c2bd2261d5b2f122bd8754ffe23be17b107b8eb103b441de3771745',               
+        
+    };
+
+    invokeServicePOST(options, function(users, err)
+    {
+        if(err)
+        {
+            next(null, "Error al obtener el token.");            
+        }
+        else
+        {
+            //next(users,null);            
+            console.log(users);
+        }
+    }); 
+
+
+
 
     var options =
     {
         host: host,
         port: null,
-        path: '/index.php?option=com_contact&webserviceVersion=1.0.0&webserviceClient=administrator&list[limit]=0&api=Hal',
-        //path: '/index.php?option=com_contact&webserviceVersion=1.0.0&webserviceClient=administrator',
+        path: '/index.php?option=com_contact&webserviceVersion=1.0.0&webserviceClient=administrator&list[limit]=0&api=Hal',        
         method: 'GET',
         encoding: null
     };
@@ -67,7 +91,7 @@ exports.registrarUsuario = function(next)
         
     };
 
-    invokeServiceReg(options, postData, function(users, err)
+    invokeServicePOST(options, function(users, err)
     {
         if(err)
         {
@@ -147,7 +171,7 @@ function invokeService(options, jsonObject, next)
  * @param {*} jsonObject estructura para almacenar la data de los usuarios
  * @param {*} next funcion callback para el tratamiento de los datos
  */
-function invokeServiceReg(options, jsonObject, next)
+function invokeServicePOST(options, next)
 {
     console.log("Realizando operación POST");
     var req = request.post(options, (err, res, body) => 

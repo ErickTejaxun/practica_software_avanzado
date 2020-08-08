@@ -1,22 +1,11 @@
 # Laboratorio Software Avanzado
-## Práctica 1 
+## Práctica 2
 
-Como primer práctica de laboratorio se ha desarrollado un cliente web que consume la api provista en el laboratorio. 
+Como continuación de la práctica #2 se ha agregado una capa de seguridad a la aplicación web.
 
-Este cliente web ha sido desarrollado a través de Nodejs, el framework express y ejs como motor de vistas. 
+1. Para la primera parte, se toma como base el proyecto nodejs anterior, el de la práctica 1, y se le agrega el uso de credenciales tipo client_credentials y token de tipo Bearer.
 
-Se han desarrollado las siguientes acciones: 
-
-1. Obtención y muestra de los contactos registrados. 
-```bash
-http://localhost/users
-```
-2. Registro de nuevos contactos
-```bash
-http://localhost/users/registrar
-```
-
-
+2. Para la segunda parte, se ha creado una nueva aplicación web, que consume la api provista, pero ahora utilizando el protocolo SOAP y haciendo uso de autenticación básica. 
 
 ## Uso
 Este cliente ha sido desarrollado a través de nodejs y utilizando yarm como gestor de paquetes. 
@@ -32,6 +21,18 @@ Para ejecutar la aplicación:
 ```bash
 yarn start
 ```
+### Operaciones
+
+1. Obtención y muestra de los contactos registrados. 
+```bash
+http://localhost/users
+```
+2. Registro de nuevos contactos
+```bash
+http://localhost/users/registrar
+```
+
+
 
 # Autor
   Erick Tejaxún
