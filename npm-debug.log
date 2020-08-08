@@ -1,101 +1,54 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node',
-1 verbose cli   '/usr/bin/npm',
-1 verbose cli   'install',
-1 verbose cli   'https-errors',
-1 verbose cli   '-save' ]
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'package.json' ]
 2 info using npm@3.5.2
 3 info using node@v8.10.0
 4 silly loadCurrentTree Starting
 5 silly install loadCurrentTree
 6 silly install readLocalPackageData
-7 silly fetchPackageMetaData https-errors
-8 silly fetchNamedPackageData https-errors
-9 silly mapToRegistry name https-errors
-10 silly mapToRegistry using default registry
-11 silly mapToRegistry registry https://registry.npmjs.org/
-12 silly mapToRegistry uri https://registry.npmjs.org/https-errors
-13 verbose request uri https://registry.npmjs.org/https-errors
-14 verbose request no auth needed
-15 info attempt registry request try #1 at 15:39:46
-16 verbose request id 88aafa2d26966b0e
-17 http request GET https://registry.npmjs.org/https-errors
-18 http 404 https://registry.npmjs.org/https-errors
-19 verbose headers { date: 'Fri, 07 Aug 2020 13:39:47 GMT',
-19 verbose headers   'content-type': 'application/json',
-19 verbose headers   'content-length': '21',
-19 verbose headers   connection: 'keep-alive',
-19 verbose headers   'set-cookie':
-19 verbose headers    [ '__cfduid=da36b61a3a96a745415d5417c27208dd31596807586; expires=Sun, 06-Sep-20 13:39:46 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
-19 verbose headers   'cf-ray': '5bf167d69c521145-MAD',
-19 verbose headers   vary: 'Accept-Encoding',
-19 verbose headers   'cf-cache-status': 'MISS',
-19 verbose headers   'cf-request-id': '046abf3a1d000011455e9c0200000001',
-19 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-19 verbose headers   server: 'cloudflare' }
-20 silly get cb [ 404,
-20 silly get   { date: 'Fri, 07 Aug 2020 13:39:47 GMT',
-20 silly get     'content-type': 'application/json',
-20 silly get     'content-length': '21',
-20 silly get     connection: 'keep-alive',
-20 silly get     'set-cookie':
-20 silly get      [ '__cfduid=da36b61a3a96a745415d5417c27208dd31596807586; expires=Sun, 06-Sep-20 13:39:46 GMT; path=/; domain=.npmjs.org; HttpOnly; SameSite=Lax' ],
-20 silly get     'cf-ray': '5bf167d69c521145-MAD',
-20 silly get     vary: 'Accept-Encoding',
-20 silly get     'cf-cache-status': 'MISS',
-20 silly get     'cf-request-id': '046abf3a1d000011455e9c0200000001',
-20 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
-20 silly get     server: 'cloudflare' } ]
-21 silly fetchPackageMetaData Error: Not found : https-errors
-21 silly fetchPackageMetaData     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-21 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-21 silly fetchPackageMetaData     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-21 silly fetchPackageMetaData     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
-21 silly fetchPackageMetaData     at emitTwo (events.js:126:13)
-21 silly fetchPackageMetaData     at Request.emit (events.js:214:7)
-21 silly fetchPackageMetaData     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
-21 silly fetchPackageMetaData     at emitOne (events.js:121:20)
-21 silly fetchPackageMetaData     at Request.emit (events.js:211:7)
-21 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12)
-21 silly fetchPackageMetaData  error for https-errors { Error: Not found : https-errors
-21 silly fetchPackageMetaData     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-21 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-21 silly fetchPackageMetaData     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-21 silly fetchPackageMetaData     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
-21 silly fetchPackageMetaData     at emitTwo (events.js:126:13)
-21 silly fetchPackageMetaData     at Request.emit (events.js:214:7)
-21 silly fetchPackageMetaData     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
-21 silly fetchPackageMetaData     at emitOne (events.js:121:20)
-21 silly fetchPackageMetaData     at Request.emit (events.js:211:7)
-21 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12) pkgid: 'https-errors', statusCode: 404, code: 'E404' }
-22 silly rollbackFailedOptional Starting
-23 silly rollbackFailedOptional Finishing
-24 silly runTopLevelLifecycles Starting
-25 silly runTopLevelLifecycles Finishing
-26 silly install printInstalled
-27 verbose stack Error: Not found : https-errors
-27 verbose stack     at makeError (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:264:12)
-27 verbose stack     at CachingRegistryClient.<anonymous> (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:252:14)
-27 verbose stack     at Request._callback (/usr/share/npm/node_modules/npm-registry-client/lib/request.js:172:14)
-27 verbose stack     at Request.self.callback (/usr/share/npm/node_modules/request/request.js:198:22)
-27 verbose stack     at emitTwo (events.js:126:13)
-27 verbose stack     at Request.emit (events.js:214:7)
-27 verbose stack     at Request.<anonymous> (/usr/share/npm/node_modules/request/request.js:1082:10)
-27 verbose stack     at emitOne (events.js:121:20)
-27 verbose stack     at Request.emit (events.js:211:7)
-27 verbose stack     at IncomingMessage.<anonymous> (/usr/share/npm/node_modules/request/request.js:1009:12)
-28 verbose statusCode 404
-29 verbose pkgid https-errors
-30 verbose cwd /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica
-31 error Linux 5.4.0-42-generic
-32 error argv "/usr/bin/node" "/usr/bin/npm" "install" "https-errors" "-save"
-33 error node v8.10.0
-34 error npm  v3.5.2
-35 error code E404
-36 error 404 Not found : https-errors
-37 error 404
-38 error 404 'https-errors' is not in the npm registry.
-39 error 404 You should bug the author to publish it (or use the name yourself!)
-40 error 404 Note that you can also install from a
-41 error 404 tarball, folder, http url, or git url.
-42 verbose exit [ 1, true ]
+7 silly fetchPackageMetaData package.json
+8 silly fetchOtherPackageData package.json
+9 silly cache add args [ 'package.json', null ]
+10 verbose cache add spec package.json
+11 silly cache add parsed spec Result {
+11 silly cache add   raw: 'package.json',
+11 silly cache add   scope: null,
+11 silly cache add   name: null,
+11 silly cache add   rawSpec: 'package.json',
+11 silly cache add   spec: '/home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json',
+11 silly cache add   type: 'local' }
+12 silly addLocalTarball shasum (computed) ad8e25cfdc9797ba4a8c9a521aa245559f0e1fee
+13 verbose addTmpTarball /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json not in flight; adding
+14 verbose addTmpTarball validating metadata from /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json
+15 verbose tar unpack /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json
+16 verbose tar unpacking to /tmp/npm-16026-1b1aae59/unpack-256afd4f
+17 silly gentlyRm /tmp/npm-16026-1b1aae59/unpack-256afd4f is being purged
+18 verbose gentlyRm don't care about contents; nuking /tmp/npm-16026-1b1aae59/unpack-256afd4f
+19 silly gunzTarPerm modes [ '775', '664' ]
+20 error not a package /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json
+21 error addLocal Could not install /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica/package.json
+22 silly fetchPackageMetaData Error: ENOENT: no such file or directory, open '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json'
+22 silly fetchPackageMetaData  error for package.json { Error: ENOENT: no such file or directory, open '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json'
+22 silly fetchPackageMetaData   errno: -2,
+22 silly fetchPackageMetaData   code: 'ENOENT',
+22 silly fetchPackageMetaData   syscall: 'open',
+22 silly fetchPackageMetaData   path: '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json' }
+23 silly rollbackFailedOptional Starting
+24 silly rollbackFailedOptional Finishing
+25 silly runTopLevelLifecycles Starting
+26 silly runTopLevelLifecycles Finishing
+27 silly install printInstalled
+28 verbose stack Error: ENOENT: no such file or directory, open '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json'
+29 verbose cwd /home/erick/Escritorio/1S2020/2S2020/SA/laboratorio/practica
+30 error Linux 5.4.0-42-generic
+31 error argv "/usr/bin/node" "/usr/bin/npm" "install" "package.json"
+32 error node v8.10.0
+33 error npm  v3.5.2
+34 error path /tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json
+35 error code ENOENT
+36 error errno -2
+37 error syscall open
+38 error enoent ENOENT: no such file or directory, open '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json'
+39 error enoent ENOENT: no such file or directory, open '/tmp/npm-16026-1b1aae59/unpack-256afd4f/package.json'
+39 error enoent This is most likely not a problem with npm itself
+39 error enoent and is related to npm not being able to find a file.
+40 verbose exit [ -2, true ]
