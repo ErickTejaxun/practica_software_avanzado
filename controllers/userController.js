@@ -17,7 +17,7 @@ exports.listUsers = function(req, res)
         else
         {
             //console.log('Usuarios recuperados: ', users['_embedded']['item']);
-            console.log('Renderizando página');
+            //console.log('Renderizando página\t' + JSON.stringify(users));
             res.render('user',{users: users['_embedded']['item']});            
         }
     });
