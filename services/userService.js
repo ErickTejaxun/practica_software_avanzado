@@ -1,4 +1,6 @@
 var http = require('https');
+var soap = require('soap');
+const EasySoap = require('easysoap');
 const { json } = require('body-parser');
 const querystring = require('querystring');
 var request = require('request');
@@ -9,6 +11,8 @@ var host = 'api.softwareavanzado.world';
 var port = 443;
 var contador = 10;
 
+var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl';
+
 
 /**
  * 
@@ -18,30 +22,55 @@ var contador = 10;
 
 exports.cargarUsuarios = function(next)
 {
-    var path = '/index.php';
-
-    var options =
+    var username = 'sa';
+    var password = 'usac';
+    const params = 
     {
-        host: host,
-        port: null,
-        path: '/index.php?option=com_contact&webserviceVersion=1.0.0&webserviceClient=administrator&list[limit]=0&api=Hal',
-        //path: '/index.php?option=com_contact&webserviceVersion=1.0.0&webserviceClient=administrator',
-        method: 'GET',
-        encoding: null
-    };
-
-    invokeService(options, null, function(users, err)
-    {
-        if(err)
-        {
-            next(null,err);
-        }
-        else
-        {
-            next(users,null);
-        }
-    });
-
+        host: 'https://api.softwareavanzado.world',
+        path: '/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl',
+        wsdl: '/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl',
+        headers: [{
+            'Authorization' : 'Basic ' + new Buffer('sa' + ':' + 'usac').toString('base64'),
+            'user-agent'    : '201213050Cliente',
+            'Content-Type'  : 'text/plain;charset=UTF-8'
+        }]
+    }
+            
+    /*
+        * create the client
+        */
+    var soapClient = EasySoap(params);
+    
+    
+    /*
+    soapClient.getAllFunctions()
+       .then((functionArray) => { console.log(functionArray); })
+       .catch((err) => { throw new Error(err); });
+    */
+    
+    
+    soapClient.getMethodParamsByName('readList')
+       .then((methodParams) => {
+          //console.log(JSON.stringify(methodParams.request));
+          console.log(JSON.stringify(methodParams.response));
+        })
+        .catch((err) => { throw new Error(err); });
+    
+    
+    soapClient.call({
+       method    : 'readList',
+       attributes: {        
+       },
+       params: {        
+       }
+    })
+    .then((callResponse) => {
+        console.log(callResponse.data['definitions']/*['message']['schema']*/); // response data as json
+        console.log(callResponse.body); // response body
+        console.log(callResponse.header);  //response header
+    })
+    .catch((err) => { throw new Error(err); });
+    
 }
 
 /**
