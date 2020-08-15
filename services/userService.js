@@ -10,6 +10,7 @@ const { response } = require('../app');
 var host = 'api.softwareavanzado.world';
 var port = 443;
 var contador = 10;
+var accessToken;
 
 var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl';
 
@@ -22,6 +23,7 @@ var url = 'https://api.softwareavanzado.world/index.php?webserviceClient=adminis
 
 exports.cargarUsuarios = function(next)
 {
+<<<<<<< HEAD
     var username = 'sa';
     var password = 'usac';
     const params = 
@@ -73,12 +75,7 @@ exports.cargarUsuarios = function(next)
     
 }
 
-/**
- * 
- * @param {*} next Funcion que se encarga del manejo de la respuesta del servidor
-  * Esta función tiene como objetivo enviar una petición de creación de contacto al servidor por medio del método POST.
- */
-exports.registrarUsuario = function(next)
+function registrarContacto(credencial, next)
 {
 
     var username = 'sa';
@@ -97,7 +94,6 @@ exports.registrarUsuario = function(next)
 
 
     var postData = JSON.stringify({name: "201213050 Usuario 1"});
-
     const data = JSON.stringify({
         name: '201213050-Usuario1'        
     });    
@@ -107,12 +103,15 @@ exports.registrarUsuario = function(next)
         uri: 'https://'+ host+'/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=hal',
         form: 
         {
-            name: '201213050-Usuario'+contador++,            
-        }               
-        
+            name: '201213050-Usuario Credenciales '+contador++,            
+        },               
+        headers: 
+        {
+            authorization: 'Bearer '+credencial,
+        }        
     };
 
-    invokeServiceReg(options, postData, function(users, err)
+    invokeServicePOST(options, function(users, err)
     {
         if(err)
         {
@@ -126,6 +125,56 @@ exports.registrarUsuario = function(next)
 }
 
 
+/**
+ * 
+ * @param {*} next Funcion que se encarga del manejo de la respuesta del servidor
+  * Esta función tiene como objetivo enviar una petición de creación de contacto al servidor por medio del método POST.
+ */
+exports.registrarUsuario = function(next)
+{
+    if(!accessToken)
+    {        
+        /*Ahora vamos a implementar la capa de seguridad.*/
+        /*Primero tenemos que solicitar al servidor de autenticación que nos otorgue un token */            
+        var options =
+        {
+            //uri: 'https://'+ host+'/index.php?option=token&api=oauth2&grant_type=client_credentials&client_id=sa&client_secret=fb5089840031449f1a4bf2c91c2bd2261d5b2f122bd8754ffe23be17b107b8eb103b441de3771745',
+            uri: 'https://'+ host+'/index.php?option=token&api=oauth2',
+            auth:
+            {
+                user:'sa',
+                pass:'fb5089840031449f1a4bf2c91c2bd2261d5b2f122bd8754ffe23be17b107b8eb103b441de3771745',
+            },
+            form: 
+            {            
+                'grant_type':'client_credentials'
+            }         
+        };
+    
+        invokeServicePOST(options, function(client_credentials, err)
+        {        
+            if(err)
+            {
+                //next(null, "Error al obtener el token.");            
+                console.log("Error al obtener la autenticación");
+            }
+            else
+            {
+                //next(users,null);            
+                accessToken = JSON.parse(client_credentials.body);
+                accessToken = accessToken["access_token"];
+                //console.log("Credencial obtenida:\t"+accessToken);   
+                registrarContacto(accessToken, next);
+            }
+        });
+    } 
+    else
+    {
+        registrarContacto(accessToken, next);
+    }    
+}
+
+
 
 /**
  * 
@@ -135,7 +184,7 @@ exports.registrarUsuario = function(next)
  */
 function invokeService(options, jsonObject, next)
 {
-    
+
     var req = http.request(options, function(res)
     {
         var contentType = res.headers['content-type'];
@@ -149,17 +198,16 @@ function invokeService(options, jsonObject, next)
         {            
             data+=chunk;            
         }).on('end', function()
-        {
+        {            
             var response = null;               
-            if(contentType.indexOf('application/hal+json') != -1)
-            {
+            if(contentType.indexOf('application/hal+json') != -1   || contentType.indexOf('application/json') != -1)
+            {                
                 response = JSON.parse(data);
             }
             else
             {
-                console.log("Tipo de datos incorrectos");
+                console.log("Tipo de datos incorrectos "+ contentType);
             }
-
             /*Se llama a la función next para tratar los datos de los usuarios*/
             next(response, null);
         }).on('error', function(err)
@@ -171,7 +219,7 @@ function invokeService(options, jsonObject, next)
         });
     }).on('error', function(err)
     {
-        console.error('Peticion HTTP fallida.\t'+ err);
+        console.error('Peticion HTTP GET fallida.\t'+ err);
         /*Se llama a la función next para tratar los errores.  */
         next(null, err);
     });
@@ -192,17 +240,18 @@ function invokeService(options, jsonObject, next)
  * @param {*} jsonObject estructura para almacenar la data de los usuarios
  * @param {*} next funcion callback para el tratamiento de los datos
  */
-function invokeServiceReg(options, jsonObject, next)
+function invokeServicePOST(options, next)
 {
     console.log("Realizando operación POST");
-    var req = request.post(options, (err, res, body) => 
+    var req = request.post(options, (err, response, body) => 
     {
         if (err) 
         {
-            console.error('Peticion HTTP fallida.\t'+ err);
+            console.error('Peticion HTTP  POST fallida.\t'+ err);
             /*Se llama a la función next para tratar los errores.  */
             next(null, err);
-        }
+        }   
+        //console.log(response);     
         next(response, null);
     });
 };
