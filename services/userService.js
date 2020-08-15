@@ -80,6 +80,22 @@ exports.cargarUsuarios = function(next)
  */
 exports.registrarUsuario = function(next)
 {
+
+    var username = 'sa';
+    var password = 'usac';
+    const params = 
+    {
+        host: 'https://api.softwareavanzado.world',
+        path: '/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl',
+        wsdl: '/index.php?webserviceClient=administrator&webserviceVersion=1.0.0&option=contact&api=soap&wsdl',
+        headers: [{
+            'Authorization' : 'Basic ' + new Buffer('sa' + ':' + 'usac').toString('base64'),
+            'user-agent'    : '201213050Cliente',
+            'Content-Type'  : 'text/plain;charset=UTF-8'
+        }]
+    }
+
+
     var postData = JSON.stringify({name: "201213050 Usuario 1"});
 
     const data = JSON.stringify({
