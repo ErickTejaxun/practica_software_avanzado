@@ -1,18 +1,10 @@
 # Laboratorio Software Avanzado
-<<<<<<< HEAD
+
 ## Práctica 2 Parte 2
 
 Como continuación de la práctica #2 se ha agregado una capa de seguridad a la aplicación web.
 Para esta la segunda parte, se ha creado una nueva aplicación web, que consume la api provista, pero ahora utilizando el protocolo SOAP y haciendo uso de autenticación básica. 
-=======
-## Práctica 2
 
-Como continuación de la práctica #2 se ha agregado una capa de seguridad a la aplicación web.
-
-1. Para la primera parte, se toma como base el proyecto nodejs anterior, el de la práctica 1, y se le agrega el uso de credenciales tipo client_credentials y token de tipo Bearer.
-
-2. Para la segunda parte, se ha creado una nueva aplicación web, que consume la api provista, pero ahora utilizando el protocolo SOAP y haciendo uso de autenticación básica. 
->>>>>>> 311858ea5d07484564127f6abfae8c24e6d04902
 
 ## Uso
 Este cliente ha sido desarrollado a través de nodejs y utilizando yarm como gestor de paquetes. 
